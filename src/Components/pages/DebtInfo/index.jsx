@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Header from '../../Header';
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box';
 import moment from 'moment';
@@ -13,7 +12,11 @@ import {
   Row,
   Grid
 } from '../CreateNewDebt/styles'
-import { Typography } from "@material-ui/core";
+import {
+  Typography,
+} from "@material-ui/core";
+
+
 import { HeadTitle, HeadGrid, BlockTitle } from './styles';
 
 
@@ -78,9 +81,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 const DebtInfo = () => {
+
   const data = JSON.parse(localStorage.getItem('formData'));
   const banks = JSON.parse(localStorage.getItem('banks'));
-  const history = useHistory();
 
   const Item = ({ title, value, additionalText = '' }) => {
     return (
@@ -134,13 +137,15 @@ const DebtInfo = () => {
   }
 
   const chartData = convertBanksToChartData(banks);
+
+  console.log(data)
+  console.log(banks)
   const classes = useStyles();
 
   const formatCurrency = (number, currency) => {
     const currencySymbol = currency === 'EUR' ? '€' : '$';
     const millionValue = parseFloat(number) / 1000000;
     const formattedNumber = millionValue.toLocaleString(undefined, {
-      style: 'currency',
       currency: currency,
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
@@ -149,30 +154,24 @@ const DebtInfo = () => {
     return currencySymbol + formattedNumber.replace(currencySymbol, '') + 'm';
   };
 
-//  useEffect(() => {
-//   if (!data) {
-//     history.goBack();
-//   }
-//  }, []);
+  function subtractFivePercent({ number }) {
+    const numericValue = parseFloat(number);
 
-  // function subtractFivePercent({ number }) {
-  //   const numericValue = parseFloat(number);
+    if (!isNaN(numericValue)) {
+      const result = numericValue - (numericValue * 0.05);
 
-  //   if (!isNaN(numericValue)) {
-  //     const result = numericValue - (numericValue * 0.05);
-
-  //     return (
-  //       <p>{result}</p>
-  //     );
-  //   } else {
-  //     return <p>{number}</p>;
-  //   }
-  // }
+      return (
+        <p>{result}</p>
+      );
+    } else {
+      return <p>{number}</p>;
+    }
+  }
 
   function formatNumberToCurrency(number) {
     const numericValue = parseFloat(number);
     if (isNaN(numericValue)) {
-      return "Incorrect number";
+      return "Некорректное число";
     }
     const formattedNumber = numericValue.toFixed(2);
     const parts = formattedNumber.toString().split(".");
@@ -227,7 +226,7 @@ const DebtInfo = () => {
             </div>
           </HeadGrid>
         </Box>
-        <BlockTitle>More details</BlockTitle>
+        <BlockTitle>Lender-Wise Distribution Details</BlockTitle>
         <Box className={classes.secondBlock}>
           <Grid style={{ gridTemplateColumns: '1fr 1fr 1fr', marginTop: 50, marginLeft: 65 }}>
             <Item title='Margin' value={data.margin} additionalText='%' />
