@@ -3,7 +3,7 @@ import React from "react";
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import { Divider } from 'antd';
+import { Divider, Button } from 'antd';
 import BankList from "./BankList";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TextInputField, SelectInputField, DateInputField } from "./Inputs/inputs";
@@ -127,10 +127,20 @@ const CreateNewDebt = () => {
             <Divider style={{ marginTop: 45, marginBottom: 45, backgroundColor: 'rgba(204, 210, 242, 0.60)' }} />
             <SubTitle>Lender-Wise Distribution Details</SubTitle>
             <Row>
-              <button type="submit">Save</button >
+            </Row>
+            <BankList />
+            <Row style={{ marginBottom: 50, justifyContent: 'end' }}>
+              <button style={{
+                background: '#2563EB',
+                borderRadius: 4,
+                border: 0,
+                color: 'white',
+                height: 40,
+                padding: '0 30px',
+              }} type="submit">Save</button >
             </Row>
           </form>
-          <BankList />
+
         </Box>
       </ScreenWrapper>
     </>

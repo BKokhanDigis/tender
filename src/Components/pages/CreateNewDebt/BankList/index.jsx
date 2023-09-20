@@ -45,7 +45,7 @@ const BankList = () => {
     banks.reduce((total, bank) => total + bank.percentage, 0);
 
   return (
-    <div>
+    <div style={{ marginBottom: 20 }}>
       <Form >
         {banks.map((bank, index) => (
           <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
@@ -76,7 +76,7 @@ const BankList = () => {
                 getTotalPercentage() === 100 ? 'success' : 'active'
               }
               showInfo={false}
-              style={{ marginLeft: '10px', marginTop: '22px', marginRight: '20px' }}
+              style={{ width: 200, marginLeft: '10px', marginTop: '22px', marginRight: '20px' }}
             />
             <Button
               disabled={banks.length === 1}
