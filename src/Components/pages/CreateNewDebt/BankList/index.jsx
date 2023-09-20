@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, InputNumber, Button, Space, Form, Progress } from 'antd';
+import { Input, InputNumber, Button, Form, Progress } from 'antd';
 import { AntDesignTextInputField } from '../Inputs/inputs'
 import { DeleteOutlined } from '@ant-design/icons';
 import addBankIcon from '../../../../assets/images/add.png';

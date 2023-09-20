@@ -1,16 +1,12 @@
 import Header from "../../Header";
-import React, { useState } from "react";
-import Container from '@material-ui/core/Container';
+import React from "react";
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField } from "@material-ui/core";
-import Typography from '@material-ui/core/Typography';
-import { MenuItem } from "@material-ui/core";
-import { useForm, Controller } from 'react-hook-form';
-import { Divider, Button } from 'antd';
+import { useForm } from 'react-hook-form';
+import { Divider } from 'antd';
 import BankList from "./BankList";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { TextInputField, NumberInputField, SelectInputField, DateInputField } from "./Inputs/inputs";
+import { TextInputField, SelectInputField, DateInputField } from "./Inputs/inputs";
 import {
   ScreenWrapper,
   Title,
@@ -64,7 +60,6 @@ const CreateNewDebt = () => {
   };
 
   const onChange = (date, dateString) => {
-    console.log(date, dateString);
 
   };
   return (
@@ -131,11 +126,11 @@ const CreateNewDebt = () => {
             </Row>
             <Divider style={{ marginTop: 45, marginBottom: 45, backgroundColor: 'rgba(204, 210, 242, 0.60)' }} />
             <SubTitle>Lender-Wise Distribution Details</SubTitle>
+            <Row>
+              <button type="submit">Save</button >
+            </Row>
           </form>
           <BankList />
-          <Row>
-            <button type="submit">Save</button >
-          </Row>
         </Box>
       </ScreenWrapper>
     </>

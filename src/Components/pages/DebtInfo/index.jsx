@@ -7,7 +7,6 @@ import { Progress, Divider, Table } from 'antd';
 import { PieChart, Pie, Cell, Legend } from 'recharts'
 import {
   ScreenWrapper,
-  Title,
   SubTitle,
   Row,
   Grid
@@ -137,9 +136,6 @@ const DebtInfo = () => {
   }
 
   const chartData = convertBanksToChartData(banks);
-
-  console.log(data)
-  console.log(banks)
   const classes = useStyles();
 
   const formatCurrency = (number, currency) => {
@@ -154,19 +150,19 @@ const DebtInfo = () => {
     return currencySymbol + formattedNumber.replace(currencySymbol, '') + 'm';
   };
 
-  function subtractFivePercent({ number }) {
-    const numericValue = parseFloat(number);
+  // function subtractFivePercent({ number }) {
+  //   const numericValue = parseFloat(number);
 
-    if (!isNaN(numericValue)) {
-      const result = numericValue - (numericValue * 0.05);
+  //   if (!isNaN(numericValue)) {
+  //     const result = numericValue - (numericValue * 0.05);
 
-      return (
-        <p>{result}</p>
-      );
-    } else {
-      return <p>{number}</p>;
-    }
-  }
+  //     return (
+  //       <p>{result}</p>
+  //     );
+  //   } else {
+  //     return <p>{number}</p>;
+  //   }
+  // }
 
   function formatNumberToCurrency(number) {
     const numericValue = parseFloat(number);
@@ -205,7 +201,7 @@ const DebtInfo = () => {
               </div>
             </div>
             <div>
-              <Progress width={230} strokeWidth={10} type="circle" percent={95} format={(percent) =>
+              <Progress size={230} strokeWidth={10} type="circle" percent={95} format={(percent) =>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   <span style={{ fontSize: '14px', fontWeight: 700, color: '#98A1B2', fontFamily: 'DM Sans' }}>Facility Amount</span>
                   <span style={{ fontSize: '16px', fontWeight: 700, color: '#2563EB', fontFamily: 'DM Sans' }}> {formatNumberToCurrency(data.facilityAmount - (data.facilityAmount * 0.05))}</span>
