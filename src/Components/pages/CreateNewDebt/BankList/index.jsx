@@ -45,7 +45,7 @@ const BankList = () => {
     banks.reduce((total, bank) => total + bank.percentage, 0);
 
   return (
-    <>
+    <div>
       <Form >
         {banks.map((bank, index) => (
           <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
@@ -96,7 +96,7 @@ const BankList = () => {
         ))}
 
       </Form>
-    </>
+    </div>
   );
 };
 

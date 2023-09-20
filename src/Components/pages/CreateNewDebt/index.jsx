@@ -131,11 +131,11 @@ const CreateNewDebt = () => {
             </Row>
             <Divider style={{ marginTop: 45, marginBottom: 45, backgroundColor: 'rgba(204, 210, 242, 0.60)' }} />
             <SubTitle>Lender-Wise Distribution Details</SubTitle>
-            <BankList />
-            <Row>
-              <button type="submit">Save</button >
-            </Row>
           </form>
+          <BankList />
+          <Row>
+            <button type="submit">Save</button >
+          </Row>
         </Box>
       </ScreenWrapper>
     </>
