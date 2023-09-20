@@ -1,13 +1,13 @@
 {
   "main.css": "/tender/static/css/main.a8b1b892.chunk.css",
-  "main.js": "/tender/static/js/main.bab45b48.chunk.js",
-  "main.js.map": "/tender/static/js/main.bab45b48.chunk.js.map",
+  "main.js": "/tender/static/js/main.e6f1777f.chunk.js",
+  "main.js.map": "/tender/static/js/main.e6f1777f.chunk.js.map",
   "runtime~main.js": "/tender/static/js/runtime~main.fc12d764.js",
   "runtime~main.js.map": "/tender/static/js/runtime~main.fc12d764.js.map",
-  "static/js/2.7c98d1c3.chunk.js": "/tender/static/js/2.7c98d1c3.chunk.js",
-  "static/js/2.7c98d1c3.chunk.js.map": "/tender/static/js/2.7c98d1c3.chunk.js.map",
+  "static/js/2.838ee01f.chunk.js": "/tender/static/js/2.838ee01f.chunk.js",
+  "static/js/2.838ee01f.chunk.js.map": "/tender/static/js/2.838ee01f.chunk.js.map",
   "index.html": "/tender/index.html",
-  "precache-manifest.cba787690e9d5215714a4146a03ec703.js": "/tender/precache-manifest.cba787690e9d5215714a4146a03ec703.js",
+  "precache-manifest.ffa3c87a1c744d251b93d3de7e37bcb2.js": "/tender/precache-manifest.ffa3c87a1c744d251b93d3de7e37bcb2.js",
   "service-worker.js": "/tender/service-worker.js",
   "static/css/main.a8b1b892.chunk.css.map": "/tender/static/css/main.a8b1b892.chunk.css.map"
 }
