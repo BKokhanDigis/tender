@@ -8,8 +8,6 @@ const BankList = () => {
     { name: '', percentage: 0 },
   ]);
 
-
-
   const addBank = () => {
     if (banks.length < 5) {
       saveBanksToLocalStorage(banks);
@@ -47,7 +45,7 @@ const BankList = () => {
     banks.reduce((total, bank) => total + bank.percentage, 0);
 
   return (
-    <div>
+    <>
       <Form >
         {banks.map((bank, index) => (
           <div key={index} style={{ display: 'flex', alignItems: 'center' }}>
@@ -78,7 +76,7 @@ const BankList = () => {
                 getTotalPercentage() === 100 ? 'success' : 'active'
               }
               showInfo={false}
-              style={{ width: '200px', marginLeft: '10px', marginTop: '22px', marginRight: '20px' }}
+              style={{ marginLeft: '10px', marginTop: '22px', marginRight: '20px' }}
             />
             <Button
               disabled={banks.length === 1}
@@ -98,7 +96,7 @@ const BankList = () => {
         ))}
 
       </Form>
-    </div>
+    </>
   );
 };
 

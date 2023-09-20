@@ -4,8 +4,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { withStyles } from "@material-ui/core/styles";
-// import NotificationsIcon from '@material-ui/icons/Notifications';
-// import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 function Header() {
   const WhiteTextTypography = withStyles({
@@ -18,7 +16,7 @@ function Header() {
     }
   })(Typography);
   return (
-    <AppBar position="static" color={'white'}>
+    <AppBar position="static" color={'transparent'}>
       <Toolbar style={{ alignItems: 'center' }} >
         <div style={{ display: 'flex', alignItems: 'center', width: '60%', justifyContent: 'space-between', marginLeft: 400 }}>
           <WhiteTextTypography variant="h6" component="div" sx={{ marginRight: 1, color: '#2563EB', fontFamily: 'DM Sans' }}>
