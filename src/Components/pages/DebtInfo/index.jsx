@@ -243,7 +243,7 @@ const DebtInfo = () => {
             <Item title='Term Holidays' value={data.termHolidays} additionalText='days' />
           </Grid>
           <Grid style={{ gridTemplateColumns: '1fr 1fr 1fr', marginTop: 50, marginLeft: 65 }}>
-            <Item title='Repayment Start date' value={formatDate(data.repaymentStartDate)} additionalText='%' />
+            <Item title='Repayment Start date' value={formatDate(data.repaymentStartDate)} />
             <Item title='Repayment Terms' value={data.repaymentTerms} />
           </Grid>
           <Grid style={{ gridTemplateColumns: '1fr 1fr 1fr', marginTop: 50, marginLeft: 65 }}>

@@ -2,12 +2,13 @@
 import React from "react";
 import { DatePicker } from 'antd';
 import { makeStyles } from '@material-ui/core/styles';
-import {  Controller } from 'react-hook-form';
+import { Controller } from 'react-hook-form';
 
 import {
   Typography,
   TextField,
   MenuItem,
+  InputAdornment,
 } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +31,13 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: '700',
     fontSize: 14,
   },
+  adornment: {
+    fontFamily: 'DM Sans',
+    color: "#98A1B2",
+    fontWeight: '400',
+    fontSize: 10,
+    marginRight: 10
+  }
 }));
 
 const AntDesignTextInputField = ({ label, placeholder, width, InputComponent, onChange }) => {
@@ -48,7 +56,7 @@ const AntDesignTextInputField = ({ label, placeholder, width, InputComponent, on
   );
 };
 
-const TextInputField = ({ label, placeholder, width, name, control }) => {
+const TextInputField = ({ label, placeholder, width, name, control, descr = '' }) => {
 
   const classes = useStyles();
   return (
@@ -68,7 +76,16 @@ const TextInputField = ({ label, placeholder, width, name, control }) => {
             size="small"
             variant="outlined"
             margin='none'
-            InputProps={{ style: { fontFamily: 'DM Sans' } }}
+            InputProps={{
+              style: { fontFamily: 'DM Sans', fontSize: 13 },
+              endAdornment: <InputAdornment position="end">
+                <div style={{
+                  fontFamily: 'DM Sans',
+                  color: "#98A1B2",
+                  fontSize: 13,
+                }}>{descr}</div>
+              </InputAdornment>,
+            }}
             {...field}
           />
         )}
@@ -77,10 +94,11 @@ const TextInputField = ({ label, placeholder, width, name, control }) => {
   );
 };
 
-const NumberInputField = ({ label, placeholder, width, name, control }) => {
+const NumberInputField = ({ label, placeholder, width, name, control, descr = '' }) => {
+  const classes = useStyles();
   return (
     <div style={{ marginTop: 23, marginRight: 15, width: width }}>
-      <Typography variant="subtitle1">
+       <Typography variant="subtitle1" className={classes.label}>
         {label}
       </Typography>
       <Controller
@@ -89,12 +107,28 @@ const NumberInputField = ({ label, placeholder, width, name, control }) => {
         render={({ field }) => (
           <TextField
             style={{ width: "100%" }}
+            className={classes.textField}
             placeholder={placeholder}
             InputLabelProps={{ shrink: false }}
             size="small"
             variant="outlined"
             margin='none'
-            InputProps={{ inputMode: 'numeric', pattern: '[0-9]*', ...field }}
+            InputProps={{
+              style: { fontFamily: 'DM Sans', fontSize: 13 },
+              endAdornment: <InputAdornment position="end">
+                <div style={{
+                  fontFamily: 'DM Sans',
+                  color: "#98A1B2",
+                  fontSize: 13,
+                }}>{descr}</div>
+              </InputAdornment>,
+              inputMode: 'numeric', pattern: '[0-9]*',
+              onChange: (e) => {
+                e.target.value = e.target.value.replace(/\D/g, "");
+                field.onChange(e);
+              }
+            }}
+            {...field}
           />
         )}
       />
@@ -123,11 +157,15 @@ const SelectInputField = ({ label, defaultValue, width, options, name, control }
             variant="outlined"
             InputLabelProps={{ shrink: false }}
             margin='none'
-            InputProps={{ style: { fontFamily: 'DM Sans' }, ...field }}
+            InputProps={{
+              style: { fontFamily: 'DM Sans', fontSize: 13 },
+
+              ...field
+            }}
             style={{ width: "100%" }}
           >
             {options.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
+              <MenuItem key={option.value} value={option.value} style={{ fontSize: 13, fontFamily: 'DM Sans' }}>
                 {option.label}
               </MenuItem>
             ))}
@@ -151,7 +189,8 @@ const DateInputField = ({ label, width, name, control }) => {
         control={control}
         render={({ field }) => (
           <DatePicker
-            style={{ width: 200, height: 42, marginLeft: 15 }}
+            style={{ width: 200, height: 38, marginLeft: 15 }}
+            inputStyle={{ fontSize: '13px', fontFamily: 'DM Sans', }}
             {...field}
             format="MM/DD/YYYY"
           />
