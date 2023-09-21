@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "a5c670c923042bffbe4a",
+    "revision": "ce96f637a2e786e6123c",
     "url": "/tender/static/css/main.a8b1b892.chunk.css"
   },
   {
-    "revision": "a5c670c923042bffbe4a",
-    "url": "/tender/static/js/main.eed3dffa.chunk.js"
+    "revision": "ce96f637a2e786e6123c",
+    "url": "/tender/static/js/main.a07de4f3.chunk.js"
   },
   {
     "revision": "b9ffaa4f6b6e00b364f8",
@@ -24,7 +24,7 @@ self.__precacheManifest = [
     "url": "/tender/static/media/Add_disabled.6b06ac5d.svg"
   },
   {
-    "revision": "7d87da76d711a5157261912c03c4412b",
+    "revision": "79d8158f3f71924a2bde0ec32587dbc7",
     "url": "/tender/index.html"
   }
 ];
