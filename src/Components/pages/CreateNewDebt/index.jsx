@@ -1,9 +1,9 @@
 import Header from "../../Header";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
-import { Divider, Button } from 'antd';
+import { Divider, Button, message } from 'antd';
 import BankList from "./BankList";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { TextInputField, SelectInputField, DateInputField, NumberInputField } from "./Inputs/inputs";
@@ -59,9 +59,34 @@ const CreateNewDebt = () => {
   const classes = useStyles();
   const { control, handleSubmit } = useForm();
 
+  const [banks, setBanks] = useState([
+    { name: '', percentage: 0 },
+  ]);
+
+  const saveBanksToLocalStorage = (banks) => {
+    localStorage.setItem('banks', JSON.stringify(banks));
+  };
+
+  const removeLastBank = (banksArray) => {
+    if (banksArray.length > 1) {
+      return banksArray.slice(0, -1);
+    } else {
+      return banksArray;
+    }
+  };
+
+  const getTotalPercentage = () =>
+    banks.reduce((total, bank) => total + bank.percentage, 0);
+
   const onSubmit = (data) => {
-    localStorage.setItem('formData', JSON.stringify(data));
-    history.push('/debtInfo');
+    if (getTotalPercentage(banks) !== 100) {
+      message.error('Total percentage must be 100%');
+    }
+    else {
+      localStorage.setItem('formData', JSON.stringify(data));
+      saveBanksToLocalStorage(removeLastBank(banks))
+      history.push('/debtInfo');
+    }
   };
 
   useEffect(() => {
@@ -150,7 +175,7 @@ const CreateNewDebt = () => {
             <SubTitle>Lender-Wise Distribution Details</SubTitle>
             <Row>
             </Row>
-            <BankList />
+            <BankList banks={banks} setBanks={setBanks} />
             <Row style={{ marginBottom: 50, justifyContent: 'end' }}>
               <button style={{
                 background: '#2563EB',

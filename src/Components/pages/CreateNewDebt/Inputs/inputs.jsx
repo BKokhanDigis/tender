@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-const AntDesignTextInputField = ({ label, placeholder, width, InputComponent, onChange }) => {
+const AntDesignTextInputField = ({ label, placeholder, width, InputComponent, onChange, disabled }) => {
   const classes = useStyles();
   return (
     <div style={{ marginTop: 23, marginRight: 15, width: width }}>
@@ -51,6 +51,7 @@ const AntDesignTextInputField = ({ label, placeholder, width, InputComponent, on
         style={{ width: "100%" }}
         placeholder={placeholder}
         onChange={onChange}
+        disabled={disabled}
       />
     </div>
   );
@@ -124,8 +125,12 @@ const NumberInputField = ({ label, placeholder, width, name, control, descr = ''
               </InputAdornment>,
               inputMode: 'numeric', pattern: '[0-9]*',
               onChange: (e) => {
-                e.target.value = e.target.value.replace(/[^\d.,]/g, "");
-                field.onChange(e);
+                // Ограничение до 2 знаков после запятой
+                const value = e.target.value;
+                const regex = /^\d*\.?\d{0,2}$/; // Регулярное выражение
+                if (regex.test(value)) {
+                  field.onChange(e);
+                }
               }
             }}
             {...field}

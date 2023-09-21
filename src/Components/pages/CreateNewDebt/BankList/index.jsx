@@ -1,27 +1,15 @@
-import React, { useState } from 'react';
-import { Input, InputNumber, Button, Form, Progress } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Input, InputNumber, Button, Form, Progress, message } from 'antd';
 import { AntDesignTextInputField } from '../Inputs/inputs'
 import { DeleteOutlined } from '@ant-design/icons';
-import addBankIcon from '../../../../assets/images/add.png';
-const BankList = () => {
-  const [banks, setBanks] = useState([
-    { name: '', percentage: 0 },
-  ]);
+import addBankIcon from '../../../../assets/images/Add.svg';
+import addBankDisabledIcon from '../../../../assets/images/Add_disabled.svg';
+const BankList = ({ banks, setBanks }) => {
 
-  const addBank = () => {
-    if (banks.length < 5) {
-      saveBanksToLocalStorage(banks);
-      const newBankList = [...banks, { name: '', percentage: 0 }];
-      setBanks(newBankList);
-    }
-  };
-  const saveBanksToLocalStorage = (banks) => {
-    localStorage.setItem('banks', JSON.stringify(banks));
-  };
+
 
   const removeBank = (index) => {
     const updatedBanks = banks.filter((_, i) => i !== index);
-    saveBanksToLocalStorage(updatedBanks);
     setBanks(updatedBanks);
   };
 
@@ -30,19 +18,26 @@ const BankList = () => {
       i === index ? { ...bank, name: value } : bank
     );
     setBanks(updatedBanks);
-    saveBanksToLocalStorage(updatedBanks);
   };
 
   const handleBankPercentageChange = (index, value) => {
-    const updatedBanks = banks.map((bank, i) =>
-      i === index ? { ...bank, percentage: value } : bank
-    );
-    setBanks(updatedBanks);
-    saveBanksToLocalStorage(updatedBanks);
+      const updatedBanks = banks.map((bank, i) =>
+        i === index ? { ...bank, percentage: value } : bank
+      );
+      setBanks(updatedBanks);
+    
   };
 
   const getTotalPercentage = () =>
     banks.reduce((total, bank) => total + bank.percentage, 0);
+
+  const addBank = () => {
+    if (banks.length < 5 ) {
+      const newBankList = [...banks, { name: '', percentage: 0 }];
+      setBanks(newBankList);
+    }
+  };
+
 
   return (
     <div style={{ marginBottom: 20 }}>
@@ -52,6 +47,7 @@ const BankList = () => {
             <Form.Item style={{ marginRight: '20px' }}
             >
               <AntDesignTextInputField
+                // disabled={index !== banks.length - 1}
                 label="Bank Name"
                 placeholder="Enter Bank Name"
                 InputComponent={Input}
@@ -61,9 +57,11 @@ const BankList = () => {
             </Form.Item>
             <Form.Item style={{ marginBottom: 0, marginTop: 22, marginRight: '20px' }}>
               <InputNumber
+                // disabled={index !== banks.length - 1}
                 style={{ width: '200px' }}
                 min={0}
                 max={100}
+                step={0.01}
                 value={bank.percentage}
                 onChange={(value) =>
                   handleBankPercentageChange(index, value)
