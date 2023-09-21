@@ -124,7 +124,7 @@ const NumberInputField = ({ label, placeholder, width, name, control, descr = ''
               </InputAdornment>,
               inputMode: 'numeric', pattern: '[0-9]*',
               onChange: (e) => {
-                e.target.value = e.target.value.replace(/\D/g, "");
+                e.target.value = e.target.value.replace(/[^\d.,]/g, "");
                 field.onChange(e);
               }
             }}

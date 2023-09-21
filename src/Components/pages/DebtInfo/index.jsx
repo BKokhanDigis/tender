@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../../Header';
 import { makeStyles } from '@material-ui/core/styles'
 import Box from '@material-ui/core/Box';
@@ -54,6 +54,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: 40,
     boxShadow: '0px 0px 4px 0px rgba(45, 156, 219, 0.10)',
     marginBottom: 90,
+    paddingBottom: 60,
   },
   textField: {
     backgroundColor: "white",
@@ -176,6 +177,10 @@ const DebtInfo = () => {
     return `$${parts.join(".")}`;
   }
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <>
       <Header />
@@ -247,7 +252,7 @@ const DebtInfo = () => {
             <Item title='Repayment Terms' value={data.repaymentTerms} />
           </Grid>
           <Grid style={{ gridTemplateColumns: '1fr 1fr 1fr', marginTop: 50, marginLeft: 65 }}>
-            <Item title='Debt Format' value={data.dabtFormat} additionalText='%' />
+            <Item title='Debt Format' value={data.dabtFormat} />
             <Item title='Format description' value={data.formatDescription} />
           </Grid>
           <Divider style={{ marginTop: 20, backgroundColor: 'rgba(204, 210, 242, 0.60)' }} />
@@ -260,7 +265,7 @@ const DebtInfo = () => {
           </Grid>
           <Grid style={{ gridTemplateColumns: '1fr 1fr 1fr', marginTop: 50, marginLeft: 65 }}>
             <Item title='Arrangement Fee' value={data.ArrangementFee} additionalText='%' />
-            <Item title='Arrangement Fee Date' value={data.ArrangementFeeDate} />
+            <Item title='Arrangement Fee Date' value={formatDate(data.ArrangementFeeDate)} />
           </Grid>
           <Divider style={{ marginTop: 20, backgroundColor: 'rgba(204, 210, 242, 0.60)' }} />
           <Grid>

@@ -1,5 +1,5 @@
 import Header from "../../Header";
-import React from "react";
+import React, { useEffect } from "react";
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useForm } from 'react-hook-form';
@@ -64,6 +64,15 @@ const CreateNewDebt = () => {
     history.push('/debtInfo');
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  useEffect(() => {
+    localStorage.removeItem('formData');
+    localStorage.removeItem('banks');
+  }, []);
+
   const onChange = (date, dateString) => {
 
   };
@@ -115,9 +124,9 @@ const CreateNewDebt = () => {
             <Divider style={{ marginTop: 45, marginBottom: 45, backgroundColor: 'rgba(204, 210, 242, 0.60)' }} />
             <SubTitle>One-time payments</SubTitle>
             <Grid>
-              <TextInputField label="Legal Fees" placeholder="Enter Legal Fees" width="200px" name="legalFees" control={control} />
+              <NumberInputField label="Legal Fees" placeholder="Enter Legal Fees" width="200px" name="legalFees" control={control} />
               <DateInputField label="Legal Fee Date" width="200px" onChange={onChange} name="legalFeeDate" control={control} />
-              <TextInputField label="Agency Fees" placeholder="Enter Agency Fees" width="200px" name="AgencyFees" control={control} />
+              <NumberInputField label="Agency Fees" placeholder="Enter Agency Fees" width="200px" name="AgencyFees" control={control} />
               <TextInputField label="Fee Terms" placeholder="Enter Fee Terms" width="200px" name="feeTerms" control={control} />
             </Grid>
             <Divider style={{ marginTop: 45, marginBottom: 45, backgroundColor: 'rgba(204, 210, 242, 0.60)' }} />
