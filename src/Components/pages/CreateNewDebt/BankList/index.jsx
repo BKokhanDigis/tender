@@ -61,7 +61,6 @@ const BankList = ({ banks, setBanks }) => {
                 style={{ width: '200px' }}
                 min={0}
                 max={100}
-                step={0.01}
                 value={bank.percentage}
                 onChange={(value) =>
                   handleBankPercentageChange(index, value)
