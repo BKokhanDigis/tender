@@ -63,7 +63,7 @@ const BankList = ({ banks, setBanks }) => {
                 max={100}
                 value={bank.percentage}
                 onChange={(value) =>
-                  handleBankPercentageChange(index, value)
+                  handleBankPercentageChange(index, Number(+value.toFixed(2)))
                 }
               />
             </Form.Item>
